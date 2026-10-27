@@ -833,3 +833,23 @@ body:has(.dlg-backdrop) { overflow: hidden; }
   .dlg-body { padding: 4px 14px 14px; }
 }
 @media (max-width: 480px) { .doc-tbl { font-size: 11.5px; } .doc-tbl td, .doc-tbl th { padding-left: 2px; padding-right: 2px; } .doc-tbl th:first-child, .doc-tbl td:first-child { width: 16%; } }
+
+/* телефон: выбор периода растягивается на всю ширину, стрелки у краёв */
+@media (max-width: 760px) {
+  .period { display: flex; width: 100%; }
+  .period > .pop { flex: 1 1 auto; min-width: 0; }
+  .period-label { width: 100%; justify-content: center; }
+  .period > .icon-btn { width: 44px; height: 44px; flex: none; }
+}
+
+/* телефон: плашка «Okres …» после закрытия полосы — отдельной строкой под шапкой */
+@media (max-width: 760px) {
+  .topbar { flex-wrap: wrap; row-gap: 10px; }
+  .greet-wrap { display: contents; }
+  .top-brand { order: 1; }
+  .top-actions { order: 2; margin-left: auto; }
+  .period-chip { order: 3; flex: 0 0 auto; margin: 0 auto; height: 36px; max-width: 100%; }
+  /* принудительный перенос: плашка всегда на своей строке по центру */
+  .topbar:has(.period-chip)::after { content: ''; order: 2; flex-basis: 100%; height: 0; }
+  .topbar:has(.period-chip) { row-gap: 5px; }
+}
